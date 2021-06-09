@@ -12,7 +12,7 @@ namespace DbUpadte
         public string Name { get; set; }
         public string Description { get; set; }
         public addVideo(string name, string url,string tableName="VideoY", string description = null,
-            string sqlConnectionString="Server=sqloledb;Data Source=SQL5097.site4now.net,1433;Initial Catalog=db_a753b9_aksuabdullah;User Id=db_a753b9_aksuabdullah_admin;Password=adaturk2578")
+            string sqlConnectionString="Server=sqloledb;Data Source=SQL5097.site4now.net,1433;Initial Catalog=db_a753b9_aksuabdullah;User Id="";Password="")
         {
             SqlString = sqlConnectionString;
             Name = name;
