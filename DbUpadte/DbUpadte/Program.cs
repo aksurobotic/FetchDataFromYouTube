@@ -13,17 +13,39 @@ namespace DbUpadte
             //var TransAlm = new Channell(url: "https://www.youtube.com/channel/UCkdHml_djw05xjm7ceRJreQ/videos");
             //TransAlm.Ytid.ForEach(i => Console.Write("{0}\t", i));
 
-            var test = new scrollToButtom("https://www.youtube.com/c/Freecodecamp/videos");
+            var test = new scrollToButtom("https://www.youtube.com/user/Eurythmicstv/videos");
             int totalLink = 0;
+            int exceptinLink = 0;
+            // Properties of the database Element.
+            string Name = null ;
+            string Url = null;
+            //string Description = null;
+            
 
             for (int i = 0; i < test.ScrollRead.Count; i++)
             {
-                Console.Write("{0}\t", test.ScrollRead[i].GetAttribute("href"));
+                Url = test.ScrollRead[i].GetAttribute("href");
+                Name = test.ScrollRead[i].GetAttribute("title");
+                try
+                {
+                    addVideo newVideo = new addVideo(name: Name, url: Url, tableName: "Video");
+                    Console.Write("{0} have successfully added to the DB!\n", newVideo.Name);
+                    
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"An Exception Occurew with following message {ex.Message}");
+                    exceptinLink++;
+                    throw;
+                    
+                }
                 totalLink = i;
+
             }
+
             Console.WriteLine("extract copmlated");
             Console.WriteLine($"{test.ScrollRead.Count} this is total detected container");
-            Console.WriteLine($"{totalLink + 1} this is total detected link");
+            Console.WriteLine($"{totalLink - exceptinLink + 1} this is total detected link {exceptinLink} link did not updated as exceptional.");
             test.driver.Close();
             Console.Read();
 

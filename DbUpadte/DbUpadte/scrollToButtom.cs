@@ -32,7 +32,6 @@ namespace DbUpadte
                 cookiespages.Click();
             }
 
-
             //System.Threading.Thread.Sleep(1000);
 
             IJavaScriptExecutor js = driver as IJavaScriptExecutor;
@@ -41,20 +40,20 @@ namespace DbUpadte
             IList<IWebElement> list = driver.FindElements(By.XPath("//a[@id='video-title']"));
             int initialCount = list.Count;
             js.ExecuteScript("window.scrollBy(0,2000)");
-            System.Threading.Thread.Sleep(500);
+            System.Threading.Thread.Sleep(600);
 
             list = driver.FindElements(By.XPath("//a[@id='video-title']"));
 
             while (list.Count != initialCount)
             {
                 js.ExecuteScript("window.scrollBy(0,2000)");
-                System.Threading.Thread.Sleep(500);
+                System.Threading.Thread.Sleep(600);
 
                 list = driver.FindElements(By.XPath("//a[@id='video-title']"));
                 initialCount = list.Count;
                 
                 js.ExecuteScript("window.scrollBy(0,2000)");
-                System.Threading.Thread.Sleep(500);
+                System.Threading.Thread.Sleep(600);
                 list = driver.FindElements(By.XPath("//a[@id='video-title']"));
             }
                      
